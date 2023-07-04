@@ -40,8 +40,41 @@ return {
                 "nvim-tree/nvim-web-devicons",
                 "MunifTanjim/nui.nvim"
             },
+            opts = {
+            },
             config = function ()
-                vim.keymap.set("n", "<leader>fb", ":Neotree toggle<CR>")
+                require("neo-tree").setup({
+                    filesystem = {
+                        follow_current_file = true,
+                        filtered_items = {
+                            visible = true,
+                            show_hidden_count = true,
+                            hide_dotfiles = false,
+                            hide_by_name = {
+                                ".git",
+                                ".DS_STORE",
+                                "node_modules",
+                            },
+                            never_show = {
+                                "node_modules"
+                            }
+                        }
+                    }
+                })
+
+                vim.keymap.set("n", "\\ss", ":Neotree toggle<CR>")
+            end
+        },
+        {
+            "stevearc/dressing.nvim",
+            opts = {},
+        },
+        {
+            "folke/trouble.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            opts = {},
+            config = function()
+                vim.keymap.set("n", "<leader>ds", "<cmd>TroubleToggle<CR>", {silent=true, noremap=true})
             end
         }
 }
