@@ -16,7 +16,14 @@ local null_ls_plugin = {
                 builtins.formatting.fixjson,
                 builtins.formatting.isort,
                 builtins.formatting.pg_format,
-                builtins.formatting.prettierd,
+                builtins.formatting.prettierd.with({
+                    filetypes = {
+                        "javascript", "javascriptreact", "typescript",
+                        "typescriptreact", "vue", "css", "scss", "less", "html",
+                        "json", "jsonc", "yaml", "markdown", "markdown.mdx",
+                        "graphql", "handlebars", "svelte"
+                    }
+                }),
                 builtins.formatting.rustfmt,
                 builtins.formatting.rustywind
             },
@@ -67,7 +74,7 @@ local cmp_nvim_lsp_plugin = {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local servers = {
             "cssls", "emmet_ls", "html", "lua_ls", "rust_analyzer", "tailwindcss",
-            "tsserver", "vimls", "vls", "pyright", "pylsp"
+            "tsserver", "vimls", "vls", "pyright", "pylsp", "svelte"
         }
 
         for _, lsp in ipairs(servers) do

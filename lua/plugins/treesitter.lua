@@ -16,6 +16,7 @@ return {
 					"python",
 					"rust",
 					"scss",
+                                        "svelte",
 					"tsx",
 					"typescript",
 					"vim"
